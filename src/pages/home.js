@@ -12,6 +12,7 @@ const homeI18n = {
     heroLede:
       'With a U-value as low as 0.34 W/m²K, a thickness of just 6.7 mm and a 50-year lifespan, vacuum glass is by far the best insulating glass in the world. It insulates three times better than high-performance double glazing and lasts twice as long. Perfect for anyone looking to make their building more sustainable — or simply save money.',
     applicationsTitle: 'Vacuum glass suits every project.',
+    aboutTeaserTitle: 'The vacuum glass specialist for Sweden and Denmark.',
     productRangeTitle: 'Our vacuum glass assortment — configurable for every project',
     productRangeLede:
       'Every Zebscan product is built on LandVac\'s patented titanium technology. That makes our range not just stronger, but better-performing and longer-lasting than other vacuum glazing on the market. Each product can be configured to your specification — clarity, solar control, acoustics and thickness. Get in touch at <a href="mailto:info@zebscan.com">info@zebscan.com</a> to discuss what\'s possible.',
@@ -22,6 +23,7 @@ const homeI18n = {
     heroLede:
       'Med ett U-värde ner till 0,34 W/m²K, en tjocklek på bara 6,7 mm och en livslängd på 50 år är vakuumglas det bästa isoleringsglaset i världen. Det isolerar tre gånger bättre än energieffektivt tvåglas och håller dubbelt så länge. Perfekt för dig som vill göra ditt hus mer hållbart — eller helt enkelt spara pengar.',
     applicationsTitle: 'Vakuumglas passar alla projekt.',
+    aboutTeaserTitle: 'Vakuumglasspecialisten för Sverige och Danmark.',
     productRangeTitle: 'Vårt vakuumglassortiment — konfigurerbart för alla projekt',
     productRangeLede:
       'Varje Zebscan-produkt är uppbyggd kring LandVacs patenterade titanteknologi. Det gör vårt sortiment inte bara starkare, utan även bättre presterande och mer hållbart än andra vakuumglasprodukter på marknaden. Varje produkt kan konfigureras efter behov — klarhet, solskydd, akustik och tjocklek. Kontakta oss på <a href="mailto:info@zebscan.com">info@zebscan.com</a> för att höra mer om möjligheterna.',
@@ -32,6 +34,7 @@ const homeI18n = {
     heroLede:
       'Med en U-værdi helt ned til 0,34 W/m²K, en tykkelse på kun 6,7 mm og en levetid på 50 år er vakuumglas verdens bedste isoleringsglas. Det isolerer tre gange bedre end energieffektivt termoglas og holder dobbelt så længe. Perfekt til dig, der vil gøre din bolig mere bæredygtig — eller bare spare penge.',
     applicationsTitle: 'Vakuumglas passer til ethvert projekt.',
+    aboutTeaserTitle: 'Vakuumglasspecialisten for Sverige og Danmark.',
     productRangeTitle: 'Vores vakuumglassortiment — konfigurerbart til ethvert projekt',
     productRangeLede:
       'Hvert Zebscan-produkt er bygget op omkring LandVacs patenterede titanteknologi. Det gør vores sortiment ikke kun stærkere, men også mere ydedygtigt og holdbart end andre vakuumglasprodukter på markedet. Hvert produkt kan konfigureres efter ønske — klarhed, solafskærmning, akustik og tykkelse. Kontakt os på <a href="mailto:info@zebscan.com">info@zebscan.com</a> for at høre mere om mulighederne.',
@@ -109,9 +112,9 @@ function home() {
 </section>
 
 <section class="section section-watermark" style="--watermark-img:url('/assets/images/applications/restauratie/restauratie-01.jpg');">
-  <div class="container" style="max-width:64ch;">
+  <div class="container">
     <span class="eyebrow">About Zebscan</span>
-    <h2 class="section-title">An independent specialist, not a manufacturer.</h2>
+    <h2 class="section-title" id="i18n-aboutTeaserTitle">${t.aboutTeaserTitle}</h2>
     <p style="font-size:15.5px;line-height:1.68;color:var(--text-secondary);max-width:52ch;">Zebscan is an independent supplier of titanium vacuum glazing to the Swedish and Danish markets — the name stands for Zero Emission Building, Scandinavia. We work with architects, contractors and building owners across new construction, renovation and heritage restoration.</p>
     <a class="btn btn-secondary" href="/about.html" style="margin-top:20px;" id="i18n-ctaLearnMore">Learn more</a>
   </div>

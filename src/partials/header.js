@@ -7,7 +7,7 @@ function header(activeKey) {
   return `<header class="site-header">
   <div class="container">
     <a class="brand" href="/index.html" aria-label="Zebscan home">
-      <img src="/assets/images/logo-darkblue.png" alt="Zebscan — Zero Emission Building" />
+      <img src="/assets/images/logo-left-aligned-darkblue.png" alt="Zebscan — Zero Emission Building" />
     </a>
 
     <nav class="nav-primary" aria-label="Primary">
