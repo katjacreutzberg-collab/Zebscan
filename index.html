@@ -49,6 +49,7 @@
     --line: rgba(11, 20, 34, 0.18);
     --glow: 0 1px 2px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.65);
     --font: 'HN Zebscan', -apple-system, 'Segoe UI', Arial, sans-serif;
+    --mobile-photo-h: clamp(200px, 38vh, 300px);
   }
 
   * { box-sizing: border-box; }
@@ -336,15 +337,27 @@
   }
 
   @media (max-width: 640px) {
-    .stage { padding: 22px 20px 32px; }
-    .hero-block { max-width: 100%; }
-    .bg-photo { background-position: 15% 50%; }
-    /* narrow screens put text across the full width, so the crop rarely
-       has a clean unobstructed area the way the desktop layout does —
-       a flatter, stronger wash keeps every line readable */
-    .scrim {
-      background: rgba(255, 255, 255, 0.72);
+    .stage {
+      padding: 22px 20px 32px;
+      min-height: calc(100dvh - var(--mobile-photo-h));
     }
+    .hero-block { max-width: 100%; }
+
+    /* the photo moves out of the text's way entirely on mobile: a fixed
+       band at the top shows the building, and the rest of the page sits
+       on solid ground below it, so nothing has to compete for contrast */
+    .bg-photo {
+      position: relative;
+      height: var(--mobile-photo-h);
+      background-position: 70% 42%;
+    }
+    .scrim {
+      position: relative;
+      height: var(--mobile-photo-h);
+      margin-top: calc(-1 * var(--mobile-photo-h));
+      background: linear-gradient(to bottom, rgba(251, 252, 252, 0) 60%, rgba(251, 252, 252, 1) 100%);
+    }
+
     footer { margin-top: 32px; }
   }
 </style>
