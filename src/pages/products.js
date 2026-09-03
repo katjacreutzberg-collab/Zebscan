@@ -8,7 +8,7 @@ function productsPage() {
   <div class="container">
     <span class="page-hero-eyebrow reveal">Product range</span>
     <h1 class="reveal" style="animation-delay:.08s;">Six specifications, one titanium vacuum platform.</h1>
-    <p class="reveal" style="animation-delay:.16s;">Every Zebscan product is built on the same titanium-spacer vacuum core — two hardened panes, a 0.3&nbsp;mm vacuum gap, and titanium spacers, edge seal and absorption strip in place of the aluminium competing products still use. What changes between products is the coating: clarity, solar control, acoustic performance or fire resistance.</p>
+    <p class="reveal" style="animation-delay:.16s;">Every Zebscan product is built on the same titanium-spacer vacuum core — two tempered panes, a 0.3&nbsp;mm vacuum gap, and titanium spacers, edge seal and absorption strip in place of the aluminium competing products still use. What changes between products is the coating: clarity, solar control, acoustic performance or fire resistance.</p>
   </div>
 </section>
 

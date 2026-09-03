@@ -40,9 +40,9 @@ function contactPage() {
           <div class="form-field">
             <label for="f-project-type">Project type</label>
             <select id="f-project-type" name="project_type">
-              <option value="nieuwbouw">Nieuwbouw — new construction</option>
-              <option value="renovatie">Renovatie — renovation</option>
-              <option value="restauratie">Restauratie — restoration</option>
+              <option value="nieuwbouw" id="i18n-catNieuwbouw">New construction</option>
+              <option value="renovatie" id="i18n-catRenovatie">Renovation</option>
+              <option value="restauratie" id="i18n-catRestauratie">Restoration</option>
               <option value="other">Other / not sure</option>
             </select>
           </div>

@@ -2,6 +2,27 @@ const products = require('../data/products');
 const applications = require('../data/applications');
 const { productCard } = require('../partials/product-card');
 
+const CAT_KEYS = { nieuwbouw: 'catNieuwbouw', renovatie: 'catRenovatie', restauratie: 'catRestauratie' };
+const CAT_FALLBACK = { nieuwbouw: 'New construction', renovatie: 'Renovation', restauratie: 'Restoration' };
+
+const homeI18n = {
+  en: {
+    productRangeTitle: 'Titanium vacuum glazing assortment',
+    productRangeLede:
+      'Every Zebscan product is built on LandVac\'s patented titanium technology. That makes our range not just stronger, but better-performing and longer-lasting than other vacuum glazing on the market. Each product can be configured to your specification — clarity, solar control, acoustics and thickness. Get in touch at <a href="mailto:info@zebscan.com">info@zebscan.com</a> to discuss what\'s possible.',
+  },
+  sv: {
+    productRangeTitle: 'Zebscans sortiment av titanvakuumglas',
+    productRangeLede:
+      'Varje Zebscan-produkt är uppbyggd kring LandVacs patenterade titanteknologi. Det gör vårt sortiment inte bara starkare, utan även bättre presterande och mer hållbart än andra vakuumglasprodukter på marknaden. Varje produkt kan konfigureras efter behov — klarhet, solskydd, akustik och tjocklek. Kontakta oss på <a href="mailto:info@zebscan.com">info@zebscan.com</a> för att höra mer om möjligheterna.',
+  },
+  da: {
+    productRangeTitle: 'Zebscans sortiment af titanvakuumglas',
+    productRangeLede:
+      'Hvert Zebscan-produkt er bygget op omkring LandVacs patenterede titanteknologi. Det gør vores sortiment ikke kun stærkere, men også mere ydedygtigt og holdbart end andre vakuumglasprodukter på markedet. Hvert produkt kan konfigureres efter ønske — klarhed, solafskærmning, akustik og tykkelse. Kontakt os på <a href="mailto:info@zebscan.com">info@zebscan.com</a> for at høre mere om mulighederne.',
+  },
+};
+
 function home() {
   const productCards = products.map(productCard).join('\n      ');
 
@@ -13,7 +34,7 @@ function home() {
         <div class="card-photo" style="background-image:url('${a.heroImage}')"></div>
         <div class="card-body">
           <span class="card-eyebrow">${a.eyebrow}</span>
-          <h3>${a.title}</h3>
+          <h3 id="i18n-${CAT_KEYS[key]}">${CAT_FALLBACK[key]}</h3>
           <p>${a.lede}</p>
           <span class="card-cta">Explore →</span>
         </div>
@@ -60,8 +81,8 @@ function home() {
     <div class="section-head">
       <div>
         <span class="eyebrow">Product range</span>
-        <h2 class="section-title">Six specifications, one titanium vacuum platform.</h2>
-        <p class="section-lede" style="margin-top:10px;">Every Zebscan product shares the same titanium-spacer vacuum core; each is coated and configured for a different job — clarity, solar control, acoustic performance, or fire safety.</p>
+        <h2 class="section-title" id="i18n-productRangeTitle">${homeI18n.en.productRangeTitle}</h2>
+        <p class="section-lede" style="margin-top:10px;" id="i18n-productRangeLede" data-i18n-html>${homeI18n.en.productRangeLede}</p>
       </div>
     </div>
     <div class="card-grid">
@@ -93,4 +114,4 @@ function home() {
 </section>`;
 }
 
-module.exports = { home };
+module.exports = { home, homeI18n };

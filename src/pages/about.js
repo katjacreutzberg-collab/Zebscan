@@ -1,7 +1,8 @@
 function aboutPage() {
+  const applications = require('../data/applications');
   return `<section class="page-hero" style="background-image:url('/assets/images/applications/nieuwbouw/nieuwbouw-02.jpg');">
   <div class="container">
-    <span class="page-hero-eyebrow reveal">Over ons</span>
+    <span class="page-hero-eyebrow reveal" id="i18n-navAbout">About us</span>
     <h1 class="reveal" style="animation-delay:.08s;">An independent specialist in <em>titanium vacuum glazing.</em></h1>
     <p class="reveal" style="animation-delay:.16s;">Zebscan supplies vacuum-insulated glass to Sweden and Denmark — engineered around a titanium spacer and edge seal system that delivers class-leading insulation from a pane a fraction of the thickness of triple glazing.</p>
   </div>
@@ -14,7 +15,7 @@ function aboutPage() {
     <div>
       <span class="eyebrow">The name</span>
       <h2 class="section-title">Zero Emission Building, Scandinavia.</h2>
-      <p style="font-size:15.5px;line-height:1.68;color:var(--text-secondary);">Zebscan is short for ZEB — Zero Emission Building — and Scan, for Scandinavia. It is a mission statement as much as a name: the glazing in a building's envelope is one of the largest, most fixable sources of avoidable heat loss, and the fastest lever most buildings have toward operating on genuinely zero-emission terms.</p>
+      <p style="font-size:15.5px;line-height:1.68;color:var(--text-secondary);">Zebscan is short for ZEB — Zero Emission Building — and Scan, for Scandinavia. It is a mission statement as much as a name: the glazing in a building's envelope is one of the largest, most fixable sources of avoidable heat loss, and one of the fastest ways most buildings can move toward genuinely zero-emission operation.</p>
       <p style="font-size:15.5px;line-height:1.68;color:var(--text-secondary);">We work specifically within Sweden and Denmark — markets with a real climate case for the highest insulation performance available, and a building stock, from grand civic architecture to standard terraced housing, where the ability to retrofit without replacing a frame matters as much as the U-value itself.</p>
     </div>
     <div class="split-media" style="aspect-ratio:4/3;padding:0;overflow:hidden;">
@@ -33,27 +34,27 @@ function aboutPage() {
       </div>
     </div>
     <div class="card-grid card-grid-3">
-      <div class="card">
+      <a class="card" href="/applications.html#nieuwbouw">
         <div class="card-body">
-          <span class="card-eyebrow">New construction</span>
-          <h3>Nieuwbouw</h3>
+          <span class="card-eyebrow">${applications.nieuwbouw.eyebrow}</span>
+          <h3 id="i18n-catNieuwbouw">New construction</h3>
           <p>Developers and architects specifying glazing that meets the strictest Nordic energy codes without oversized frame sections.</p>
         </div>
-      </div>
-      <div class="card">
+      </a>
+      <a class="card" href="/applications.html#renovatie">
         <div class="card-body">
-          <span class="card-eyebrow">Renovation</span>
-          <h3>Renovatie</h3>
+          <span class="card-eyebrow">${applications.renovatie.eyebrow}</span>
+          <h3 id="i18n-catRenovatie">Renovation</h3>
           <p>Homeowners upgrading standard housing stock — terraced houses, apartments — without replacing window frames.</p>
         </div>
-      </div>
-      <div class="card">
+      </a>
+      <a class="card" href="/applications.html#restauratie">
         <div class="card-body">
-          <span class="card-eyebrow">Restoration</span>
-          <h3>Restauratie</h3>
+          <span class="card-eyebrow">${applications.restauratie.eyebrow}</span>
+          <h3 id="i18n-catRestauratie">Restoration</h3>
           <p>Heritage and monument owners meeting conservation constraints that rule out conventional insulated glazing entirely.</p>
         </div>
-      </div>
+      </a>
     </div>
   </div>
 </section>
@@ -64,7 +65,7 @@ function aboutPage() {
       <div>
         <span class="eyebrow">How it works</span>
         <h2 class="section-title">Titanium, where most glass still uses aluminium.</h2>
-        <p class="section-lede" style="margin-top:10px;">Every Zebscan pane is two hardened glass sheets separated by a vacuum gap just 0.3&nbsp;mm wide — not a gas-filled cavity. Removing the air removes convective heat transfer almost entirely. What makes the Zebscan range specifically titanium vacuum glazing is what holds that gap open: titanium spacers distributed across the pane, a titanium absorption strip that keeps the vacuum stable over decades, and a flexible titanium edge seal — in place of the rigid aluminium spacer bar most insulated glass still relies on.</p>
+        <p class="section-lede" style="margin-top:10px;">Every Zebscan pane is two tempered glass sheets separated by a vacuum gap just 0.3&nbsp;mm wide — not a gas-filled cavity. Removing the air removes convective heat transfer almost entirely. What makes the Zebscan range specifically titanium vacuum glazing is what holds that gap open: titanium spacers distributed across the pane, a titanium absorption strip that keeps the vacuum stable over decades, and a flexible titanium edge seal — in place of the rigid aluminium spacer bar most insulated glass still relies on.</p>
       </div>
     </div>
     <div class="usp-strip">

@@ -66,7 +66,7 @@ module.exports = [
       { label: 'Design life', value: '50 years' },
     ],
     body: [
-      'D.80 adds a second, solar-selective coating on top of S1.10\'s insulation performance. The result is a pane that behaves asymmetrically with the seasons — it still holds heat indoors through a Nordic winter, but rejects a meaningfully larger share of incoming solar radiation once the sun is doing the opposite job.',
+      'D.80 adds a second, solar-selective coating on top of S1.10\'s insulation performance. The result is a pane that performs differently depending on the season — it still holds heat indoors through a Nordic winter, but rejects a meaningfully larger share of incoming solar radiation once the sun is doing the opposite job.',
       'That combination matters most on glazing that gets real sun exposure — south- and west-facing façades, large glass areas, conservatories — where a purely insulating pane can turn a well-insulated room into a greenhouse by mid-afternoon.',
     ],
     bestFor: ['South/west-facing façades', 'Large glazed areas prone to overheating', 'Renovations and new-build alike'],
@@ -88,7 +88,7 @@ module.exports = [
       { label: 'Design life', value: '50 years' },
     ],
     body: [
-      'S70 carries three coatings tuned to work together rather than compromise against each other: U=0.35 W/m²K — the ceiling of what the titanium vacuum platform delivers — paired with a G-value of 0.33, an aggressive level of solar rejection normally associated with much darker, less transparent glass.',
+      'S70 stacks three coatings tuned to reinforce each other rather than trade off against one another: U=0.35 W/m²K — the ceiling of what the titanium vacuum platform delivers — paired with a G-value of 0.33, an aggressive level of solar rejection normally associated with much darker, less transparent glass.',
       'It is the specification of choice for buildings where the energy bill is decided by the façade: offices with heavy glazing ratios, schools, and any new-build project targeting the strictest energy-performance codes in the Nordic region without over-sizing mechanical cooling to compensate.',
     ],
     bestFor: ['Offices & commercial new-build', 'High glazing-ratio façades', 'Projects targeting the strictest energy codes'],
@@ -99,8 +99,8 @@ module.exports = [
     name: 'Hybrid',
     badge: 'Configurable performance',
     tagline: 'A vacuum pane plus a thermally-broken secondary pane — you set the total thickness.',
-    heroImage: '/assets/images/products/assortment-range.jpg',
-    hasPhoto: false,
+    heroImage: '/assets/images/products/hybrid.png',
+    hasPhoto: true,
     specs: [
       { label: 'U-value', value: 'from 0.35 W/m²K' },
       { label: 'Thickness', value: 'from 6.7 mm, built to the frame depth available' },
@@ -119,8 +119,8 @@ module.exports = [
     name: 'Fire Resistant Glazing',
     badge: 'Fire safety — EW30',
     tagline: 'EW30 fire and smoke protection, insulating performance, one 15 mm pane.',
-    heroImage: '/assets/images/products/cross-section-compare.jpg',
-    hasPhoto: false,
+    heroImage: '/assets/images/products/fire-resistant-glazing.png',
+    hasPhoto: true,
     specs: [
       { label: 'Fire classification', value: 'EW 30 (30 min fire & smoke)' },
       { label: 'U-value', value: '0.40 W/m²K' },

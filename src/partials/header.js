@@ -12,9 +12,9 @@ function header(activeKey) {
 
     <nav class="nav-primary" aria-label="Primary">
       ${link('home', '/index.html', 'navHome', 'Home')}
-      ${link('about', '/about.html', 'navAbout', 'Over ons')}
-      ${link('products', '/products.html', 'navProducts', 'Producten')}
-      ${link('applications', '/applications.html', 'navApplications', 'Toepassingen')}
+      ${link('about', '/about.html', 'navAbout', 'About us')}
+      ${link('products', '/products.html', 'navProducts', 'Products')}
+      ${link('applications', '/applications.html', 'navApplications', 'Applications')}
       ${link('contact', '/contact.html', 'navContact', 'Contact')}
     </nav>
 

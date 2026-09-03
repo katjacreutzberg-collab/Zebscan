@@ -1,13 +1,15 @@
 const applications = require('../data/applications');
 const products = require('../data/products');
 
+const CAT_KEYS = { nieuwbouw: 'catNieuwbouw', renovatie: 'catRenovatie', restauratie: 'catRestauratie' };
+const CAT_FALLBACK = { nieuwbouw: 'New construction', renovatie: 'Renovation', restauratie: 'Restoration' };
+
 function productById(slug) {
   return products.find((p) => p.slug === slug);
 }
 
-function section(a, index) {
+function section(key, a, index) {
   const paragraphs = a.body.map((t) => `<p>${t}</p>`).join('\n          ');
-  const gallery = a.gallery.map((src) => `<img src="${src}" alt="${a.title} project" loading="lazy" />`).join('\n        ');
   const recommended = a.recommended
     .map((slug) => {
       const p = productById(slug);
@@ -16,26 +18,25 @@ function section(a, index) {
     .join('\n        ');
 
   const bg = index % 2 === 1 ? ' section-ice' : '';
+  const catId = 'i18n-' + CAT_KEYS[key];
 
   return `<section class="section${bg}" id="${a.id}">
-  <div class="container">
-    <div class="section-head">
-      <div>
-        <span class="eyebrow">${a.eyebrow}</span>
-        <h2 class="section-title">${a.title} — ${a.label}</h2>
-        <p class="section-lede" style="margin-top:10px;">${a.lede}</p>
+  <div class="container split" style="align-items:start;">
+    <div class="split-media" style="aspect-ratio:4/3;padding:0;overflow:hidden;">
+      <img src="${a.heroImage}" alt="${CAT_FALLBACK[key]} project" loading="lazy" style="width:100%;height:100%;object-fit:cover;" />
+    </div>
+    <div>
+      <span class="eyebrow">${a.eyebrow}</span>
+      <h2 class="section-title"><span id="${catId}">${CAT_FALLBACK[key]}</span></h2>
+      <p class="section-lede" style="margin-bottom:22px;">${a.lede}</p>
+      <div class="split-copy">
+        ${paragraphs}
       </div>
-    </div>
-    <div class="photo-row" style="margin-bottom:32px;">
-      ${gallery}
-    </div>
-    <div class="split-copy" style="max-width:70ch;">
-      ${paragraphs}
-    </div>
-    <div style="margin-top:24px;">
-      <span class="eyebrow" style="display:block;margin-bottom:12px;">Recommended products</span>
-      <div style="display:flex;gap:10px;flex-wrap:wrap;">
-        ${recommended}
+      <div style="margin-top:24px;">
+        <span class="eyebrow" style="display:block;margin-bottom:12px;">Recommended products</span>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;">
+          ${recommended}
+        </div>
       </div>
     </div>
   </div>
@@ -44,11 +45,11 @@ function section(a, index) {
 
 function applicationsPage() {
   const order = ['nieuwbouw', 'renovatie', 'restauratie'];
-  const sections = order.map((key, i) => section(applications[key], i)).join('\n\n');
+  const sections = order.map((key, i) => section(key, applications[key], i)).join('\n\n');
 
   return `<section class="page-hero" style="background-image:url('/assets/images/applications/nieuwbouw/nieuwbouw-01.jpg');">
   <div class="container">
-    <span class="page-hero-eyebrow reveal">Toepassingen</span>
+    <span class="page-hero-eyebrow reveal" id="i18n-navApplications">Applications</span>
     <h1 class="reveal" style="animation-delay:.08s;">Three briefs. One <em>titanium vacuum platform.</em></h1>
     <p class="reveal" style="animation-delay:.16s;">New construction, renovation and heritage restoration ask for different things from a pane of glass. Zebscan's range is built to answer all three without changing what makes it work.</p>
   </div>

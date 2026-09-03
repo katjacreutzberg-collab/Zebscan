@@ -261,7 +261,7 @@ h2.section-title {
 .usp-item { display: flex; flex-direction: column; gap: 6px; }
 .usp-value {
   font-family: var(--font);
-  font-weight: 300;
+  font-weight: 500;
   font-size: clamp(24px, 2.6vw, 32px);
   font-variant-numeric: tabular-nums;
 }

@@ -15,9 +15,9 @@ function footer() {
       <div class="footer-col">
         <h4 id="i18n-footerNavHeading">Site</h4>
         <a href="/index.html" id="i18n-navHome">Home</a>
-        <a href="/about.html" id="i18n-navAbout">Over ons</a>
-        <a href="/products.html" id="i18n-navProducts">Producten</a>
-        <a href="/applications.html" id="i18n-navApplications">Toepassingen</a>
+        <a href="/about.html" id="i18n-navAbout">About us</a>
+        <a href="/products.html" id="i18n-navProducts">Products</a>
+        <a href="/applications.html" id="i18n-navApplications">Applications</a>
         <a href="/contact.html" id="i18n-navContact">Contact</a>
       </div>
       <div class="footer-col">

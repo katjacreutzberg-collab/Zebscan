@@ -5,7 +5,7 @@ const { renderPage } = require('./lib/render');
 const { productDetail } = require('./partials/product-detail');
 const products = require('./data/products');
 
-const { home } = require('./pages/home');
+const { home, homeI18n } = require('./pages/home');
 const { aboutPage } = require('./pages/about');
 const { productsPage } = require('./pages/products');
 const { applicationsPage } = require('./pages/applications');
@@ -30,13 +30,14 @@ write(
     path: '/',
     navKey: 'home',
     body: home(),
+    pageTranslations: homeI18n,
   })
 );
 
 write(
   'about.html',
   renderPage({
-    title: 'Over ons — Zebscan',
+    title: 'About Us — Zebscan',
     description: 'Zebscan is an independent supplier of titanium vacuum glazing to Sweden and Denmark. Learn about the technology and the markets we serve.',
     path: '/about.html',
     navKey: 'about',
@@ -47,7 +48,7 @@ write(
 write(
   'products.html',
   renderPage({
-    title: 'Producten — Zebscan',
+    title: 'Products — Zebscan',
     description: 'Six titanium vacuum glazing specifications: US1.10, S1.10, D.80, S70, Hybrid and Fire Resistant Glazing. Compare U-values, light transmission and best-fit use cases.',
     path: '/products.html',
     navKey: 'products',
@@ -58,7 +59,7 @@ write(
 write(
   'applications.html',
   renderPage({
-    title: 'Toepassingen — Zebscan',
+    title: 'Applications — Zebscan',
     description: 'Titanium vacuum glazing for new construction, renovation and heritage restoration across Sweden and Denmark.',
     path: '/applications.html',
     navKey: 'applications',
