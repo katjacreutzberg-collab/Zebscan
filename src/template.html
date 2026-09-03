@@ -44,35 +44,44 @@
     -webkit-font-smoothing: antialiased;
   }
 
-  .stage {
-    position: relative;
-    min-height: 100vh;
-    min-height: 100dvh;
-    display: flex;
-    flex-direction: column;
-    padding: 40px clamp(24px, 6vw, 72px) 64px;
+  /* background + scrim are fixed to the viewport, independent of content
+     height, so tall/wrapped mobile copy can scroll the page normally
+     instead of being clipped or forced to overlap the top bar */
+  .bg-photo {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
     background-image: url(data:image/jpeg;base64,__HERO_BG__);
     background-size: cover;
     background-position: 62% 50%;
-    overflow: hidden;
   }
 
   .scrim {
-    position: absolute;
+    position: fixed;
     inset: 0;
+    z-index: 1;
     background:
       linear-gradient(112deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.22) 34%, rgba(255, 255, 255, 0) 56%),
       linear-gradient(0deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 24%);
     pointer-events: none;
   }
 
-  .topbar {
+  .stage {
     position: relative;
     z-index: 2;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding: 40px clamp(24px, 6vw, 72px) 64px;
+  }
+
+  .topbar {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
     gap: 20px;
+    flex-shrink: 0;
   }
 
   .logo-mark {
@@ -119,24 +128,18 @@
   }
   .lang-switch span { color: var(--line); font-size: 11px; }
 
-  .hero-center {
-    position: absolute;
-    inset: 0;
-    z-index: 2;
-    display: flex;
-    align-items: center;
-    padding: 0 clamp(24px, 6vw, 72px);
-    pointer-events: none;
-  }
-
   .hero-block {
-    pointer-events: auto;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 22px;
     max-width: 560px;
     text-align: left;
+    /* centers vertically in the space between the top bar and footer when
+       there's room; when content is taller (wrapped mobile copy), the
+       auto margins collapse and it just flows after the top bar instead
+       of overlapping it */
+    margin: auto 0;
   }
 
   .reveal {
@@ -298,11 +301,8 @@
   }
 
   footer {
-    position: absolute;
-    bottom: 18px;
-    left: 0;
-    right: 0;
-    z-index: 2;
+    flex-shrink: 0;
+    margin-top: 24px;
     text-align: center;
     font-family: var(--font);
     font-weight: 400;
@@ -318,15 +318,23 @@
   }
 
   @media (max-width: 640px) {
-    .stage { padding: 22px 20px 56px; background-position: 74% 50%; }
-    .hero-center { padding: 0 20px; }
+    .stage { padding: 22px 20px 32px; }
     .hero-block { max-width: 100%; }
+    .bg-photo { background-position: 15% 50%; }
+    /* narrow screens put text across the full width, so the crop rarely
+       has a clean unobstructed area the way the desktop layout does —
+       a flatter, stronger wash keeps every line readable */
+    .scrim {
+      background: rgba(255, 255, 255, 0.72);
+    }
+    footer { margin-top: 32px; }
   }
 </style>
 
-<div class="stage">
-  <div class="scrim" aria-hidden="true"></div>
+<div class="bg-photo" aria-hidden="true"></div>
+<div class="scrim" aria-hidden="true"></div>
 
+<div class="stage">
   <div class="topbar">
     <div class="logo-mark">
       <img src="data:image/png;base64,__LOGO_PNG__" alt="Zebscan — Zero Emission Building" />
@@ -340,7 +348,6 @@
     </div>
   </div>
 
-  <div class="hero-center">
   <div class="hero-block">
     <div class="status reveal">
       <span class="status-dot"></span>
@@ -383,7 +390,6 @@
       <span class="markets-sep">&middot;</span>
       <a class="contact-link" href="mailto:info@zebscan.com">info@zebscan.com</a>
     </div>
-  </div>
   </div>
 
   <footer id="i18n-footer">&copy; 2026 Zebscan &mdash; Zero Emission Building &middot; Sweden &middot; Denmark</footer>
