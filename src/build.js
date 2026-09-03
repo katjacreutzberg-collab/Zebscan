@@ -28,15 +28,29 @@ const styleMatch = fragment.match(/^<style>[\s\S]*?<\/style>\s*/);
 const styleBlock = styleMatch ? styleMatch[0] : '';
 fragment = styleMatch ? fragment.slice(styleMatch[0].length) : fragment;
 
+const description = 'Titanium-engineered vacuum glazing for Sweden and Denmark. U-value 0.34 W/m²K at just 6.7 mm thick. Site launching soon.';
+const siteUrl = 'https://zebscan.com/';
+const shareImage = siteUrl + 'og-image.jpg';
+
 const html = `<!doctype html>
 <html lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>${title}</title>
-<meta name="description" content="Zebscan supplies titanium-engineered vacuum glazing to Sweden and Denmark. Site launching soon.">
+<meta name="description" content="${description}">
 <link rel="icon" type="image/png" href="/favicon.png">
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="${siteUrl}">
+<meta property="og:type" content="website">
+<meta property="og:url" content="${siteUrl}">
+<meta property="og:title" content="${title}">
+<meta property="og:description" content="${description}">
+<meta property="og:image" content="${shareImage}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="${title}">
+<meta name="twitter:description" content="${description}">
+<meta name="twitter:image" content="${shareImage}">
 ${styleBlock}</head>
 <body>
 ${fragment}</body>
