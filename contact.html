@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Contact — Zebscan</title>
+<meta name="description" content="Request a quote for titanium vacuum glazing from Zebscan. New construction, renovation and restoration projects in Sweden and Denmark.">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="canonical" href="https://zebscan.com/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://zebscan.com/contact.html">
+<meta property="og:title" content="Contact — Zebscan">
+<meta property="og:description" content="Request a quote for titanium vacuum glazing from Zebscan. New construction, renovation and restoration projects in Sweden and Denmark.">
+<meta property="og:image" content="https://zebscan.com/og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Contact — Zebscan">
+<meta name="twitter:description" content="Request a quote for titanium vacuum glazing from Zebscan. New construction, renovation and restoration projects in Sweden and Denmark.">
+<meta name="twitter:image" content="https://zebscan.com/og-image.jpg">
+<link rel="preload" as="font" href="/assets/fonts/HelveticaNeueRoman.otf" type="font/otf" crossorigin>
+<link rel="stylesheet" href="/assets/css/tokens.css">
+<link rel="stylesheet" href="/assets/css/fonts.css">
+<link rel="stylesheet" href="/assets/css/base.css">
+</head>
+<body>
+<header class="site-header">
+  <div class="container">
+    <a class="brand" href="/index.html" aria-label="Zebscan home">
+      <img src="/assets/images/logo-darkblue.png" alt="Zebscan — Zero Emission Building" />
+    </a>
+
+    <nav class="nav-primary" aria-label="Primary">
+      <a href="/index.html" id="i18n-navHome">Home</a>
+      <a href="/about.html" id="i18n-navAbout">Over ons</a>
+      <a href="/products.html" id="i18n-navProducts">Producten</a>
+      <a href="/applications.html" id="i18n-navApplications">Toepassingen</a>
+      <a href="/contact.html" class="active" id="i18n-navContact">Contact</a>
+    </nav>
+
+    <div class="header-actions">
+      <div class="lang-switch" role="group" aria-label="Language">
+        <button type="button" data-lang-btn="en" class="active">EN</button>
+        <span>&middot;</span>
+        <button type="button" data-lang-btn="sv">SV</button>
+        <span>&middot;</span>
+        <button type="button" data-lang-btn="da">DA</button>
+      </div>
+      <a class="btn-quote" href="/contact.html" id="i18n-navQuote">Request a quote</a>
+      <button type="button" class="nav-toggle" aria-label="Toggle menu" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+</header>
+<section class="page-hero" style="background-image:url('/assets/images/hero-bg.jpg');min-height:clamp(220px,30vh,320px);">
+  <div class="container">
+    <span class="page-hero-eyebrow reveal">Contact</span>
+    <h1 class="reveal" style="animation-delay:.08s;">Request a quote.</h1>
+    <p class="reveal" style="animation-delay:.16s;">Tell us about the project and we'll come back with a specification and pricing. No obligation.</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container split" style="align-items:start;">
+    <div>
+      <!-- TODO: replace REPLACE_ME with the real Formspree form ID before this branch is merged/launched -->
+      <form id="quote-form" action="https://formspree.io/f/REPLACE_ME" method="POST"
+            data-success-text="Thanks — your request has been sent. We'll be in touch shortly."
+            data-error-text="Something went wrong sending this. Please try again, or email us directly.">
+        <div class="form-grid">
+          <div class="form-field">
+            <label for="f-name">Name</label>
+            <input type="text" id="f-name" name="name" required autocomplete="name">
+          </div>
+          <div class="form-field">
+            <label for="f-company">Company (optional)</label>
+            <input type="text" id="f-company" name="company" autocomplete="organization">
+          </div>
+          <div class="form-field">
+            <label for="f-email">Email</label>
+            <input type="email" id="f-email" name="email" required autocomplete="email">
+          </div>
+          <div class="form-field">
+            <label for="f-phone">Phone (optional)</label>
+            <input type="tel" id="f-phone" name="phone" autocomplete="tel">
+          </div>
+          <div class="form-field">
+            <label for="f-project-type">Project type</label>
+            <select id="f-project-type" name="project_type">
+              <option value="nieuwbouw">Nieuwbouw — new construction</option>
+              <option value="renovatie">Renovatie — renovation</option>
+              <option value="restauratie">Restauratie — restoration</option>
+              <option value="other">Other / not sure</option>
+            </select>
+          </div>
+          <div class="form-field">
+            <label for="f-product">Product interest</label>
+            <select id="f-product" name="product">
+              <option value="">Not sure — recommend one</option>
+              <option value="us1-10">US1.10</option>
+              <option value="s1-10">S1.10</option>
+              <option value="d-80">D.80</option>
+              <option value="s70">S70</option>
+              <option value="hybrid">Hybrid</option>
+              <option value="fire-resistant-glazing">Fire Resistant Glazing</option>
+            </select>
+          </div>
+          <div class="form-field full">
+            <label for="f-message">Project details</label>
+            <textarea id="f-message" name="message" required placeholder="Location, approximate glazing area, current window type, timeline…"></textarea>
+          </div>
+        </div>
+
+        <input type="text" name="_gotcha" class="form-honeypot" tabindex="-1" autocomplete="off">
+        <input type="hidden" name="_subject" value="New quote request — Zebscan">
+        <input type="hidden" name="_next" value="https://zebscan.com/contact.html?sent=1">
+
+        <button type="submit" class="btn btn-primary" style="margin-top:20px;" id="i18n-ctaRequestQuote">Request a quote</button>
+        <div class="form-status" id="form-status"></div>
+      </form>
+    </div>
+
+    <div>
+      <span class="eyebrow">Direct contact</span>
+      <p style="font-size:15px;color:var(--text-secondary);margin:10px 0 20px;">Prefer email? Reach us directly:</p>
+      <div style="display:flex;flex-direction:column;gap:10px;font-family:var(--font);font-size:15px;">
+        <a href="mailto:info@zebscan.se" style="color:var(--accent);text-decoration:none;">info@zebscan.se</a>
+        <a href="mailto:info@zebscan.dk" style="color:var(--accent);text-decoration:none;">info@zebscan.dk</a>
+        <a href="mailto:info@zebscan.com" style="color:var(--accent);text-decoration:none;">info@zebscan.com</a>
+      </div>
+      <div class="card-spec-row" style="margin-top:28px;border-top:1px solid var(--line);padding-top:16px;">
+        <span>Sweden &middot; Denmark</span>
+      </div>
+    </div>
+  </div>
+</section>
+<footer class="site-footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <div class="footer-logo"><img src="/assets/images/logo-darkblue.png" alt="Zebscan" /></div>
+        <p id="i18n-footerTagline">Zero Emission Building</p>
+      </div>
+      <div class="footer-col">
+        <h4 id="i18n-footerNavHeading">Site</h4>
+        <a href="/index.html" id="i18n-navHome">Home</a>
+        <a href="/about.html" id="i18n-navAbout">Over ons</a>
+        <a href="/products.html" id="i18n-navProducts">Producten</a>
+        <a href="/applications.html" id="i18n-navApplications">Toepassingen</a>
+        <a href="/contact.html" id="i18n-navContact">Contact</a>
+      </div>
+      <div class="footer-col">
+        <h4 id="i18n-footerContactHeading">Contact</h4>
+        <a href="mailto:info@zebscan.se">info@zebscan.se</a>
+        <a href="mailto:info@zebscan.dk">info@zebscan.dk</a>
+        <a href="mailto:info@zebscan.com">info@zebscan.com</a>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span id="i18n-footerCopyright">© 2026 Zebscan — Zero Emission Building · Sweden · Denmark</span>
+    </div>
+  </div>
+</footer>
+<script src="/assets/js/nav.js" defer></script>
+<script src="/assets/js/i18n-runtime.js" defer></script>
+<script src="/assets/js/contact-form.js" defer></script>
+<script defer>
+  window.addEventListener('DOMContentLoaded', function () {
+    if (window.initI18n) window.initI18n({"en":{"navHome":"Home","navAbout":"Over ons","navProducts":"Producten","navApplications":"Toepassingen","navContact":"Contact","navQuote":"Request a quote","footerNavHeading":"Site","footerProductsHeading":"Products","footerContactHeading":"Contact","footerTagline":"Zero Emission Building","footerCopyright":"© 2026 Zebscan — Zero Emission Building · Sweden · Denmark","ctaRequestQuote":"Request a quote","ctaViewProduct":"View product","ctaAllProducts":"View all products","ctaLearnMore":"Learn more"},"sv":{"navHome":"Hem","navAbout":"Om oss","navProducts":"Produkter","navApplications":"Användning","navContact":"Kontakt","navQuote":"Begär offert","footerNavHeading":"Sida","footerProductsHeading":"Produkter","footerContactHeading":"Kontakt","footerTagline":"Zero Emission Building","footerCopyright":"© 2026 Zebscan — Zero Emission Building · Sverige · Danmark","ctaRequestQuote":"Begär offert","ctaViewProduct":"Visa produkt","ctaAllProducts":"Visa alla produkter","ctaLearnMore":"Läs mer"},"da":{"navHome":"Hjem","navAbout":"Om os","navProducts":"Produkter","navApplications":"Anvendelse","navContact":"Kontakt","navQuote":"Anmod om tilbud","footerNavHeading":"Side","footerProductsHeading":"Produkter","footerContactHeading":"Kontakt","footerTagline":"Zero Emission Building","footerCopyright":"© 2026 Zebscan — Zero Emission Building · Sverige · Danmark","ctaRequestQuote":"Anmod om tilbud","ctaViewProduct":"Se produkt","ctaAllProducts":"Se alle produkter","ctaLearnMore":"Læs mere"}});
+  });
+</script>
+</body>
+</html>

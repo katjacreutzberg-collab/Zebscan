@@ -1,64 +1,99 @@
 const fs = require('fs');
 const path = require('path');
 
-const root = __dirname;
-const repoRoot = path.join(root, '..');
+const { renderPage } = require('./lib/render');
+const { productDetail } = require('./partials/product-detail');
+const products = require('./data/products');
 
-const fontLight = fs.readFileSync(path.join(root, 'assets', 'fonts', 'HelveticaNeueLight.otf')).toString('base64');
-const fontRoman = fs.readFileSync(path.join(root, 'assets', 'fonts', 'HelveticaNeueRoman.otf')).toString('base64');
-const fontMedium = fs.readFileSync(path.join(root, 'assets', 'fonts', 'HelveticaNeueMedium.otf')).toString('base64');
-const logoPng = fs.readFileSync(path.join(root, 'assets', 'logo-darkblue.png')).toString('base64');
-const heroBg = fs.readFileSync(path.join(root, 'assets', 'hero-bg.jpg')).toString('base64');
+const { home } = require('./pages/home');
+const { aboutPage } = require('./pages/about');
+const { productsPage } = require('./pages/products');
+const { applicationsPage } = require('./pages/applications');
+const { contactPage } = require('./pages/contact');
 
-let fragment = fs.readFileSync(path.join(root, 'template.html'), 'utf8');
+const repoRoot = path.join(__dirname, '..');
 
-fragment = fragment.replace('__FONT_LIGHT__', fontLight);
-fragment = fragment.replace('__FONT_ROMAN__', fontRoman);
-fragment = fragment.replace('__FONT_MEDIUM__', fontMedium);
-fragment = fragment.replace('__LOGO_PNG__', logoPng);
-fragment = fragment.replace('__HERO_BG__', heroBg);
+function write(relPath, html) {
+  const outPath = path.join(repoRoot, relPath);
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
+  fs.writeFileSync(outPath, html);
+  console.log(`  ${relPath}  (${(Buffer.byteLength(html) / 1024).toFixed(1)} KB)`);
+}
 
-// template.html starts with <title> then <style>; split those out of the
-// fragment so they can be placed in a proper standalone <head>.
-const titleMatch = fragment.match(/^<title>([\s\S]*?)<\/title>\s*/);
-const title = titleMatch ? titleMatch[1] : 'Zebscan';
-fragment = titleMatch ? fragment.slice(titleMatch[0].length) : fragment;
+console.log('Building pages...');
 
-const styleMatch = fragment.match(/^<style>[\s\S]*?<\/style>\s*/);
-const styleBlock = styleMatch ? styleMatch[0] : '';
-fragment = styleMatch ? fragment.slice(styleMatch[0].length) : fragment;
+write(
+  'index.html',
+  renderPage({
+    title: 'Zebscan — Titanium Vacuum Glazing',
+    description: 'Zebscan supplies titanium-engineered vacuum glazing to Sweden and Denmark — U-value from 0.35 W/m²K at just 6.7 mm thick. New construction, renovation and restoration.',
+    path: '/',
+    navKey: 'home',
+    body: home(),
+  })
+);
 
-const description = 'Titanium-engineered vacuum glazing for Sweden and Denmark. U-value 0.34 W/m²K at just 6.7 mm thick. Site launching soon.';
-const siteUrl = 'https://zebscan.com/';
-const shareImage = siteUrl + 'og-image.jpg';
+write(
+  'about.html',
+  renderPage({
+    title: 'Over ons — Zebscan',
+    description: 'Zebscan is an independent supplier of titanium vacuum glazing to Sweden and Denmark. Learn about the technology and the markets we serve.',
+    path: '/about.html',
+    navKey: 'about',
+    body: aboutPage(),
+  })
+);
 
-const html = `<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>${title}</title>
-<meta name="description" content="${description}">
-<link rel="icon" type="image/png" href="/favicon.png">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png">
-<link rel="canonical" href="${siteUrl}">
-<meta property="og:type" content="website">
-<meta property="og:url" content="${siteUrl}">
-<meta property="og:title" content="${title}">
-<meta property="og:description" content="${description}">
-<meta property="og:image" content="${shareImage}">
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="${title}">
-<meta name="twitter:description" content="${description}">
-<meta name="twitter:image" content="${shareImage}">
-${styleBlock}</head>
-<body>
-${fragment}</body>
-</html>
-`;
+write(
+  'products.html',
+  renderPage({
+    title: 'Producten — Zebscan',
+    description: 'Six titanium vacuum glazing specifications: US1.10, S1.10, D.80, S70, Hybrid and Fire Resistant Glazing. Compare U-values, light transmission and best-fit use cases.',
+    path: '/products.html',
+    navKey: 'products',
+    body: productsPage(),
+  })
+);
 
-const outPath = path.join(repoRoot, 'index.html');
-fs.writeFileSync(outPath, html);
+write(
+  'applications.html',
+  renderPage({
+    title: 'Toepassingen — Zebscan',
+    description: 'Titanium vacuum glazing for new construction, renovation and heritage restoration across Sweden and Denmark.',
+    path: '/applications.html',
+    navKey: 'applications',
+    body: applicationsPage(),
+  })
+);
 
-console.log('Written:', outPath);
-console.log('Size (KB):', (Buffer.byteLength(html) / 1024).toFixed(1));
+write(
+  'contact.html',
+  renderPage({
+    title: 'Contact — Zebscan',
+    description: 'Request a quote for titanium vacuum glazing from Zebscan. New construction, renovation and restoration projects in Sweden and Denmark.',
+    path: '/contact.html',
+    navKey: 'contact',
+    body: contactPage(),
+    extraScripts: '<script src="/assets/js/contact-form.js" defer></script>',
+  })
+);
+
+products.forEach((p) => {
+  write(
+    `products/${p.slug}.html`,
+    renderPage({
+      title: `${p.name} — Zebscan Titanium Vacuum Glazing`,
+      description: `${p.tagline} ${p.specs[0].label}: ${p.specs[0].value}.`,
+      path: `/products/${p.slug}.html`,
+      navKey: 'products',
+      ogImage: p.hasPhoto ? p.heroImage : '/og-image.jpg',
+      body: productDetail(p),
+    })
+  );
+});
+
+// GitHub Pages runs Jekyll by default, which can mangle folder structures
+// and stray {{ }}-looking text; disable it since this is a plain static build.
+fs.writeFileSync(path.join(repoRoot, '.nojekyll'), '');
+
+console.log('Done.');

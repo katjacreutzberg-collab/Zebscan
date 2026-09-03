@@ -1,0 +1,21 @@
+:root {
+  --page-bg: #fbfcfc;
+  --card-bg: #ffffff;
+  --ink-bg: #0b1422;
+  --text: #0b1422;
+  --text-secondary: #545e68;
+  --text-on-ink: #f6f7f8;
+  --text-on-ink-secondary: #b7c0c7;
+  --accent: #2e557f;
+  --accent-deep: #1e3a56;
+  --nordic-blue: #2e557f;
+  --aurora-green: #1e4b3e;
+  --ice: #d6e6ea;
+  --line: rgba(11, 20, 34, 0.14);
+  --line-strong: rgba(11, 20, 34, 0.22);
+  --glow: 0 1px 2px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.65);
+  --font: 'HN Zebscan', -apple-system, 'Segoe UI', Arial, sans-serif;
+  --header-h: 78px;
+  --container-w: 1160px;
+  --mobile-photo-h: clamp(220px, 40vh, 340px);
+}
