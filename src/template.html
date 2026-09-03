@@ -1,0 +1,478 @@
+<title>Zebscan Launch</title>
+<style>
+  @font-face {
+    font-family: 'HN Zebscan';
+    src: url(data:font/otf;base64,__FONT_LIGHT__) format('opentype');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'HN Zebscan';
+    src: url(data:font/otf;base64,__FONT_ROMAN__) format('opentype');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: 'HN Zebscan';
+    src: url(data:font/otf;base64,__FONT_MEDIUM__) format('opentype');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+
+  :root {
+    --page-bg: #fbfcfc;
+    --text: #0b1422;
+    --text-secondary: #545e68;
+    --accent: #2e557f;
+    --nordic-blue: #2e557f;
+    --line: rgba(11, 20, 34, 0.18);
+    --glow: 0 1px 2px rgba(255, 255, 255, 0.9), 0 0 20px rgba(255, 255, 255, 0.65);
+    --font: 'HN Zebscan', -apple-system, 'Segoe UI', Arial, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--page-bg);
+    color: var(--text);
+    font-family: var(--font);
+    font-weight: 400;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .stage {
+    position: relative;
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    padding: 40px clamp(24px, 6vw, 72px) 64px;
+    background-image: url(data:image/jpeg;base64,__HERO_BG__);
+    background-size: cover;
+    background-position: 62% 50%;
+    overflow: hidden;
+  }
+
+  .scrim {
+    position: absolute;
+    inset: 0;
+    background:
+      linear-gradient(112deg, rgba(255, 255, 255, 0.5) 0%, rgba(255, 255, 255, 0.22) 34%, rgba(255, 255, 255, 0) 56%),
+      linear-gradient(0deg, rgba(255, 255, 255, 0.4) 0%, rgba(255, 255, 255, 0) 24%);
+    pointer-events: none;
+  }
+
+  .topbar {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .logo-mark {
+    display: inline-flex;
+    align-items: center;
+    overflow: visible;
+  }
+  .logo-mark img {
+    display: block;
+    width: clamp(150px, 15vw, 220px);
+    height: auto;
+    /* the logo PNG carries ~18% transparent padding before the mark/wordmark starts;
+       shift left by that fraction so the "Z" lines up with the headline's "T" */
+    transform: translateX(-18.1%);
+    filter: drop-shadow(0 1px 8px rgba(255, 255, 255, 0.85)) drop-shadow(0 1px 3px rgba(255, 255, 255, 0.9));
+  }
+
+  .lang-switch {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--font);
+    font-weight: 500;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+  }
+  .lang-switch button {
+    background: none;
+    border: none;
+    padding: 4px 2px;
+    font-family: var(--font);
+    font-weight: 500;
+    font-size: 11.5px;
+    letter-spacing: 0.06em;
+    color: var(--text-secondary);
+    text-shadow: var(--glow);
+    cursor: pointer;
+  }
+  .lang-switch button.active { color: var(--accent); }
+  .lang-switch button:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+  .lang-switch span { color: var(--line); font-size: 11px; }
+
+  .hero-center {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+    padding: 0 clamp(24px, 6vw, 72px);
+    pointer-events: none;
+  }
+
+  .hero-block {
+    pointer-events: auto;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    max-width: 560px;
+    text-align: left;
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(10px);
+    animation: rise 0.7s cubic-bezier(.2,.7,.2,1) forwards;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .reveal { opacity: 1; transform: none; animation: none; }
+  }
+  @keyframes rise {
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  .status {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    padding: 7px 16px 7px 12px;
+    border: 1px solid rgba(46, 85, 127, 0.35);
+    background: rgba(255, 255, 255, 0.55);
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    border-radius: 999px;
+    font-family: var(--font);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text);
+    animation-delay: 0.05s;
+  }
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 0 0 rgba(46, 85, 127, 0.45);
+    animation: pulse 2.4s ease-out infinite;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .status-dot { animation: none; }
+  }
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(46, 85, 127, 0.4); }
+    70% { box-shadow: 0 0 0 8px rgba(46, 85, 127, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(46, 85, 127, 0); }
+  }
+
+  h1 {
+    margin: 0;
+    font-family: var(--font);
+    font-weight: 300;
+    font-size: clamp(30px, 4.6vw, 46px);
+    line-height: 1.14;
+    letter-spacing: -0.01em;
+    text-wrap: balance;
+    color: var(--text);
+    text-shadow: var(--glow);
+    animation-delay: 0.16s;
+  }
+  h1 em {
+    font-style: normal;
+    font-weight: 500;
+    color: var(--accent);
+  }
+
+  .specs {
+    display: flex;
+    gap: 28px;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    animation-delay: 0.26s;
+  }
+  .spec {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+  }
+  .spec-value {
+    font-family: var(--font);
+    font-weight: 500;
+    font-size: 18px;
+    color: var(--text);
+    text-shadow: var(--glow);
+    font-variant-numeric: tabular-nums;
+  }
+  .spec-label {
+    font-family: var(--font);
+    font-weight: 400;
+    font-size: 10.5px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    text-shadow: var(--glow);
+  }
+  .spec-tick {
+    width: 1px;
+    height: 26px;
+    background: var(--line);
+    align-self: center;
+  }
+
+  .lede {
+    margin: 0;
+    max-width: 48ch;
+    font-family: var(--font);
+    font-weight: 400;
+    font-size: 15px;
+    line-height: 1.62;
+    color: var(--text-secondary);
+    text-shadow: var(--glow);
+    animation-delay: 0.34s;
+  }
+
+  .markets {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font);
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-shadow: var(--glow);
+    animation-delay: 0.42s;
+  }
+  .market-pill {
+    font-family: var(--font);
+    font-weight: 500;
+    font-size: 11px;
+    letter-spacing: 0.06em;
+    color: var(--text);
+    border: 1px solid var(--line);
+    border-radius: 5px;
+    padding: 4px 9px;
+    background: rgba(255, 255, 255, 0.5);
+  }
+  .markets-sep { color: var(--text-secondary); font-size: 12px; }
+
+  .contact {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font);
+    font-size: 13px;
+    color: var(--text-secondary);
+    text-shadow: var(--glow);
+    animation-delay: 0.5s;
+  }
+  .contact-link {
+    color: var(--accent);
+    font-weight: 500;
+    text-decoration: none;
+  }
+  .contact-link:hover,
+  .contact-link:focus-visible {
+    text-decoration: underline;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 18px;
+    left: 0;
+    right: 0;
+    z-index: 2;
+    text-align: center;
+    font-family: var(--font);
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.03em;
+    color: var(--text-secondary);
+    text-shadow: var(--glow);
+    opacity: 0;
+    animation: rise 0.7s cubic-bezier(.2,.7,.2,1) 0.6s forwards;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    footer { animation: none; opacity: 1; }
+  }
+
+  @media (max-width: 640px) {
+    .stage { padding: 22px 20px 56px; background-position: 74% 50%; }
+    .hero-center { padding: 0 20px; }
+    .hero-block { max-width: 100%; }
+  }
+</style>
+
+<div class="stage">
+  <div class="scrim" aria-hidden="true"></div>
+
+  <div class="topbar">
+    <div class="logo-mark">
+      <img src="data:image/png;base64,__LOGO_PNG__" alt="Zebscan — Zero Emission Building" />
+    </div>
+    <div class="lang-switch" role="group" aria-label="Language">
+      <button type="button" data-lang-btn="en" class="active">EN</button>
+      <span>&middot;</span>
+      <button type="button" data-lang-btn="sv">SV</button>
+      <span>&middot;</span>
+      <button type="button" data-lang-btn="da">DA</button>
+    </div>
+  </div>
+
+  <div class="hero-center">
+  <div class="hero-block">
+    <div class="status reveal">
+      <span class="status-dot"></span>
+      <span id="i18n-badge">Website under construction</span>
+    </div>
+
+    <h1 class="reveal" id="i18n-headline">The world&rsquo;s best insulating <em>vacuum glass</em>.</h1>
+
+    <div class="specs reveal">
+      <div class="spec">
+        <span class="spec-value" id="i18n-spec1-value">0.34 W/m&sup2;K</span>
+        <span class="spec-label" id="i18n-spec1-label">U-value</span>
+      </div>
+      <div class="spec-tick"></div>
+      <div class="spec">
+        <span class="spec-value" id="i18n-spec2-value">6.7 mm</span>
+        <span class="spec-label" id="i18n-spec2-label">Total build</span>
+      </div>
+      <div class="spec-tick"></div>
+      <div class="spec">
+        <span class="spec-value" id="i18n-spec3-value">Ti-alloy</span>
+        <span class="spec-label" id="i18n-spec3-label">Edge seal</span>
+      </div>
+    </div>
+
+    <p class="lede reveal" id="i18n-lede">A titanium alloy edge seal and spacer system &mdash; in place of the aluminium used by competing brands &mdash; gives Zebscan vacuum glass greater strength, a longer lifespan and superior insulation, at just 6.7&nbsp;mm thick.</p>
+
+    <div class="markets reveal">
+      <span id="i18n-markets-label">Coming soon to</span>
+      <span class="market-pill" id="i18n-market-se">Sweden</span>
+      <span class="markets-sep">&middot;</span>
+      <span class="market-pill" id="i18n-market-dk">Denmark</span>
+    </div>
+
+    <div class="contact reveal">
+      <span id="i18n-contact-label">Contact</span>
+      <a class="contact-link" href="mailto:info@zebscan.se">info@zebscan.se</a>
+      <span class="markets-sep">&middot;</span>
+      <a class="contact-link" href="mailto:info@zebscan.dk">info@zebscan.dk</a>
+      <span class="markets-sep">&middot;</span>
+      <a class="contact-link" href="mailto:info@zebscan.com">info@zebscan.com</a>
+    </div>
+  </div>
+  </div>
+
+  <footer id="i18n-footer">&copy; 2026 Zebscan &mdash; Zero Emission Building &middot; Sweden &middot; Denmark</footer>
+</div>
+
+<script>
+  (function () {
+    var translations = {
+      en: {
+        badge: 'Website under construction',
+        headline: 'The world’s best insulating <em>vacuum glass</em>.',
+        spec1Value: '0.34 W/m²K', spec1Label: 'U-value',
+        spec2Value: '6.7 mm', spec2Label: 'Total build',
+        spec3Value: 'Ti-alloy', spec3Label: 'Edge seal',
+        lede: 'A titanium alloy edge seal and spacer system — in place of the aluminium used by competing brands — gives Zebscan vacuum glass greater strength, a longer lifespan and superior insulation, at just 6.7 mm thick.',
+        marketsLabel: 'Coming soon to',
+        marketSE: 'Sweden', marketDK: 'Denmark',
+        contactLabel: 'Contact',
+        footer: '© 2026 Zebscan — Zero Emission Building · Sweden · Denmark'
+      },
+      sv: {
+        badge: 'Webbplats under uppbyggnad',
+        headline: 'Världens bästa isolerande <em>vakuumglas</em>.',
+        spec1Value: '0,34 W/m²K', spec1Label: 'U-värde',
+        spec2Value: '6,7 mm', spec2Label: 'Total tjocklek',
+        spec3Value: 'Titanlegering', spec3Label: 'Kantförsegling',
+        lede: 'En kantförsegling och distanslist i titanlegering — istället för aluminium som konkurrerande märken använder — ger Zebscans vakuumglas högre styrka, längre livslängd och bättre isolering, på bara 6,7 mm tjocklek.',
+        marketsLabel: 'Kommer snart till',
+        marketSE: 'Sverige', marketDK: 'Danmark',
+        contactLabel: 'Kontakt',
+        footer: '© 2026 Zebscan — Zero Emission Building · Sverige · Danmark'
+      },
+      da: {
+        badge: 'Hjemmeside under opbygning',
+        headline: 'Verdens bedste isolerende <em>vakuumglas</em>.',
+        spec1Value: '0,34 W/m²K', spec1Label: 'U-værdi',
+        spec2Value: '6,7 mm', spec2Label: 'Samlet tykkelse',
+        spec3Value: 'Titanlegering', spec3Label: 'Kantforsegling',
+        lede: 'En kantforsegling og afstandsliste i titanlegering — i stedet for aluminium som konkurrerende mærker bruger — giver Zebscans vakuumglas større styrke, længere levetid og bedre isolering, ved kun 6,7 mm tykkelse.',
+        marketsLabel: 'Kommer snart til',
+        marketSE: 'Sverige', marketDK: 'Danmark',
+        contactLabel: 'Kontakt',
+        footer: '© 2026 Zebscan — Zero Emission Building · Sverige · Danmark'
+      }
+    };
+
+    var ids = {
+      badge: 'i18n-badge',
+      spec1Value: 'i18n-spec1-value', spec1Label: 'i18n-spec1-label',
+      spec2Value: 'i18n-spec2-value', spec2Label: 'i18n-spec2-label',
+      spec3Value: 'i18n-spec3-value', spec3Label: 'i18n-spec3-label',
+      lede: 'i18n-lede',
+      marketsLabel: 'i18n-markets-label',
+      marketSE: 'i18n-market-se', marketDK: 'i18n-market-dk',
+      contactLabel: 'i18n-contact-label',
+      footer: 'i18n-footer'
+    };
+
+    function applyLang(lang) {
+      var t = translations[lang] || translations.en;
+      Object.keys(ids).forEach(function (key) {
+        var el = document.getElementById(ids[key]);
+        if (el) el.textContent = t[key];
+      });
+      var headlineEl = document.getElementById('i18n-headline');
+      if (headlineEl) headlineEl.innerHTML = t.headline;
+
+      document.documentElement.lang = lang;
+      var buttons = document.querySelectorAll('[data-lang-btn]');
+      for (var i = 0; i < buttons.length; i++) {
+        var b = buttons[i];
+        if (b.getAttribute('data-lang-btn') === lang) b.classList.add('active');
+        else b.classList.remove('active');
+      }
+      try { localStorage.setItem('zebscan-lang', lang); } catch (e) {}
+    }
+
+    var buttons = document.querySelectorAll('[data-lang-btn]');
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', function (e) {
+        applyLang(e.currentTarget.getAttribute('data-lang-btn'));
+      });
+    }
+
+    var initialLang = 'en';
+    try {
+      var saved = localStorage.getItem('zebscan-lang');
+      if (saved && translations[saved]) initialLang = saved;
+    } catch (e) {}
+    applyLang(initialLang);
+  })();
+</script>
