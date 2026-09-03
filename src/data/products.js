@@ -54,7 +54,7 @@ module.exports = [
     slug: 'd-80',
     name: 'D.80',
     badge: 'Solar control',
-    tagline: 'Keeps the heat in during winter and out during summer, from the same pane.',
+    tagline: 'Keeps the heat in during winter and out during summer.',
     heroImage: '/assets/images/products/d-80.png',
     hasPhoto: true,
     specs: [
@@ -75,12 +75,12 @@ module.exports = [
     id: 's70',
     slug: 's70',
     name: 'S70',
-    badge: 'Best-in-class insulation',
+    badge: 'Best insulation and solar control',
     tagline: 'The strongest insulation and the strongest solar rejection Zebscan offers, together.',
     heroImage: '/assets/images/products/s70.png',
     hasPhoto: true,
     specs: [
-      { label: 'U-value', value: '0.35 W/m²K' },
+      { label: 'U-value', value: '0.34 W/m²K' },
       { label: 'Solar factor (G)', value: '0.33' },
       { label: 'Light transmission (LTA)', value: '68%' },
       { label: 'Thickness', value: 'from 8.3 mm' },
@@ -88,7 +88,7 @@ module.exports = [
       { label: 'Design life', value: '50 years' },
     ],
     body: [
-      'S70 stacks three coatings tuned to reinforce each other rather than trade off against one another: U=0.35 W/m²K — the ceiling of what the titanium vacuum platform delivers — paired with a G-value of 0.33, an aggressive level of solar rejection normally associated with much darker, less transparent glass.',
+      'S70 stacks three coatings tuned to reinforce each other rather than trade off against one another: U=0.34 W/m²K — the ceiling of what the titanium vacuum platform delivers — paired with a G-value of 0.33, an aggressive level of solar rejection normally associated with much darker, less transparent glass.',
       'It is the specification of choice for buildings where the energy bill is decided by the façade: offices with heavy glazing ratios, schools, and any new-build project targeting the strictest energy-performance codes in the Nordic region without over-sizing mechanical cooling to compensate.',
     ],
     bestFor: ['Offices & commercial new-build', 'High glazing-ratio façades', 'Projects targeting the strictest energy codes'],
@@ -102,7 +102,7 @@ module.exports = [
     heroImage: '/assets/images/products/hybrid.png',
     hasPhoto: true,
     specs: [
-      { label: 'U-value', value: 'from 0.35 W/m²K' },
+      { label: 'U-value', value: 'from 0.34 W/m²K' },
       { label: 'Thickness', value: 'from 6.7 mm, built to the frame depth available' },
       { label: 'Sound reduction', value: 'up to 41 dB (laminated build-up)' },
       { label: 'Design life', value: '50 years' },

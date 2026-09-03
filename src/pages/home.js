@@ -7,17 +7,32 @@ const CAT_FALLBACK = { nieuwbouw: 'New construction', renovatie: 'Renovation', r
 
 const homeI18n = {
   en: {
-    productRangeTitle: 'Titanium vacuum glazing assortment',
+    heroEyebrow: 'Vacuum glass',
+    heroTitle: 'Discover the revolutionary power of <em>titanium vacuum glass</em>.',
+    heroLede:
+      'With a U-value as low as 0.34 W/m²K, a thickness of just 6.7 mm and a 50-year lifespan, vacuum glass is by far the best insulating glass in the world. It insulates three times better than high-performance double glazing and lasts twice as long. Perfect for anyone looking to make their building more sustainable — or simply save money.',
+    applicationsTitle: 'Vacuum glass suits every project.',
+    productRangeTitle: 'Vacuum glass assortment',
     productRangeLede:
       'Every Zebscan product is built on LandVac\'s patented titanium technology. That makes our range not just stronger, but better-performing and longer-lasting than other vacuum glazing on the market. Each product can be configured to your specification — clarity, solar control, acoustics and thickness. Get in touch at <a href="mailto:info@zebscan.com">info@zebscan.com</a> to discuss what\'s possible.',
   },
   sv: {
-    productRangeTitle: 'Zebscans sortiment av titanvakuumglas',
+    heroEyebrow: 'Vakuumglas',
+    heroTitle: 'Upptäck den revolutionerande kraften i <em>titanvakuumglas</em>.',
+    heroLede:
+      'Med ett U-värde ner till 0,34 W/m²K, en tjocklek på bara 6,7 mm och en livslängd på 50 år är vakuumglas det bästa isoleringsglaset i världen. Det isolerar tre gånger bättre än energieffektivt tvåglas och håller dubbelt så länge. Perfekt för dig som vill göra ditt hus mer hållbart — eller helt enkelt spara pengar.',
+    applicationsTitle: 'Vakuumglas passar alla projekt.',
+    productRangeTitle: 'Vakuumglassortiment',
     productRangeLede:
       'Varje Zebscan-produkt är uppbyggd kring LandVacs patenterade titanteknologi. Det gör vårt sortiment inte bara starkare, utan även bättre presterande och mer hållbart än andra vakuumglasprodukter på marknaden. Varje produkt kan konfigureras efter behov — klarhet, solskydd, akustik och tjocklek. Kontakta oss på <a href="mailto:info@zebscan.com">info@zebscan.com</a> för att höra mer om möjligheterna.',
   },
   da: {
-    productRangeTitle: 'Zebscans sortiment af titanvakuumglas',
+    heroEyebrow: 'Vakuumglas',
+    heroTitle: 'Oplev den revolutionerende kraft i <em>titanvakuumglas</em>.',
+    heroLede:
+      'Med en U-værdi helt ned til 0,34 W/m²K, en tykkelse på kun 6,7 mm og en levetid på 50 år er vakuumglas verdens bedste isoleringsglas. Det isolerer tre gange bedre end energieffektivt termoglas og holder dobbelt så længe. Perfekt til dig, der vil gøre din bolig mere bæredygtig — eller bare spare penge.',
+    applicationsTitle: 'Vakuumglas passer til ethvert projekt.',
+    productRangeTitle: 'Vakuumglassortiment',
     productRangeLede:
       'Hvert Zebscan-produkt er bygget op omkring LandVacs patenterede titanteknologi. Det gør vores sortiment ikke kun stærkere, men også mere ydedygtigt og holdbart end andre vakuumglasprodukter på markedet. Hvert produkt kan konfigureres efter ønske — klarhed, solafskærmning, akustik og tykkelse. Kontakt os på <a href="mailto:info@zebscan.com">info@zebscan.com</a> for at høre mere om mulighederne.',
   },
@@ -42,18 +57,20 @@ function home() {
     })
     .join('\n      ');
 
+  const t = homeI18n.en;
+
   return `<section class="page-hero" style="background-image:url('/assets/images/hero-bg.jpg');">
   <div class="container">
-    <span class="page-hero-eyebrow reveal">Titanium vacuum glazing &middot; Sweden &amp; Denmark</span>
-    <h1 class="reveal" style="animation-delay:.08s;">Engineered to make old windows perform like new ones.</h1>
-    <p class="reveal" style="animation-delay:.16s;">Zebscan supplies titanium-spacer vacuum glazing — down to 6.7&nbsp;mm thick, with a U-value as low as 0.35&nbsp;W/m²K — for new construction, renovation and heritage restoration.</p>
+    <span class="page-hero-eyebrow reveal" id="i18n-heroEyebrow">${t.heroEyebrow}</span>
+    <h1 class="reveal" style="animation-delay:.08s;" id="i18n-heroTitle" data-i18n-html>${t.heroTitle}</h1>
+    <p class="reveal" style="animation-delay:.16s;" id="i18n-heroLede">${t.heroLede}</p>
   </div>
 </section>
 
 <section class="section-tight">
   <div class="container">
     <div class="usp-strip">
-      <div class="usp-item"><span class="usp-value">0.35 W/m²K</span><span class="usp-label">Best U-value</span></div>
+      <div class="usp-item"><span class="usp-value">0.34 W/m²K</span><span class="usp-label">Best U-value</span></div>
       <div class="usp-item"><span class="usp-value">6.7 mm</span><span class="usp-label">Thinnest build</span></div>
       <div class="usp-item"><span class="usp-value">50 years</span><span class="usp-label">Design life</span></div>
       <div class="usp-item"><span class="usp-value">&minus;70%</span><span class="usp-label">Heat loss vs. aluminium spacers</span></div>
@@ -66,7 +83,7 @@ function home() {
     <div class="section-head">
       <div>
         <span class="eyebrow">Applications</span>
-        <h2 class="section-title">Built for three very different briefs.</h2>
+        <h2 class="section-title" id="i18n-applicationsTitle">${t.applicationsTitle}</h2>
       </div>
       <a class="card-cta" href="/applications.html" style="text-decoration:none;">All applications →</a>
     </div>
@@ -81,8 +98,8 @@ function home() {
     <div class="section-head">
       <div>
         <span class="eyebrow">Product range</span>
-        <h2 class="section-title" id="i18n-productRangeTitle">${homeI18n.en.productRangeTitle}</h2>
-        <p class="section-lede" style="margin-top:10px;" id="i18n-productRangeLede" data-i18n-html>${homeI18n.en.productRangeLede}</p>
+        <h2 class="section-title" id="i18n-productRangeTitle">${t.productRangeTitle}</h2>
+        <p class="section-lede" style="margin-top:10px;" id="i18n-productRangeLede" data-i18n-html>${t.productRangeLede}</p>
       </div>
     </div>
     <div class="card-grid">

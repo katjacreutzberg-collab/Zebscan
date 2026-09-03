@@ -26,7 +26,7 @@ write(
   'index.html',
   renderPage({
     title: 'Zebscan — Titanium Vacuum Glazing',
-    description: 'Zebscan supplies titanium-engineered vacuum glazing to Sweden and Denmark — U-value from 0.35 W/m²K at just 6.7 mm thick. New construction, renovation and restoration.',
+    description: 'Zebscan supplies titanium-engineered vacuum glazing to Sweden and Denmark — U-value from 0.34 W/m²K at just 6.7 mm thick. New construction, renovation and restoration.',
     path: '/',
     navKey: 'home',
     body: home(),
