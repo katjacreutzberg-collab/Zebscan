@@ -14,7 +14,7 @@ function productsPage() {
 
 <section class="section">
   <div class="container">
-    <div class="card-grid">
+    <div class="card-grid card-grid-products">
       ${cards}
     </div>
   </div>
